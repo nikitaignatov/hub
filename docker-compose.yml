@@ -4,7 +4,7 @@ services:
     image: influxdb
     container_name: influxdb
     volumes:
-      - /home/hub/data/influxdb/:/var/lib/influxdb
+      - influxdb-volume:/var/lib/influxdb
     ports:
       - "8086:8086" 
       - "8089:8089"
@@ -17,7 +17,7 @@ services:
       - influxdb
     restart: always
     volumes:
-      - /home/hub/data/grafana/:/var/lib/grafana
+      - grafana-volume:/var/lib/grafana
   mqtt:  
     image: eclipse-mosquitto
     hostname: mosquitto
@@ -29,13 +29,13 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - /home/hub/config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - e:/config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
     networks:
       - default
   node-red:
     build: node-red
     volumes:
-       - /home/hub/data/node-red:/data
+       - node-red-volume:/data
     ports:
        - "1880:1880"
     depends_on:
@@ -49,3 +49,10 @@ services:
       - PASSWORD=$$2a$$08$$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN. 
 networks:
   hubinternal:
+volumes:
+  node-red-volume:
+    external: true
+  influxdb-volume:
+    external: true
+  grafana-volume:
+    external: true

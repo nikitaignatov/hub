@@ -3,7 +3,7 @@
 # utils
 apt-get update -y
 apt-get upgrade -y
-apt-get install -y curl git nano  python-pip docker-compose  
+apt-get install -y curl git nano  python-pip docker-compose  docker-ce docker-ce-cli containerd.io
 
 # Install packages to allow apt to use a repository over HTTPS:
 apt-get install -y \
@@ -21,9 +21,10 @@ add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-apt-get update
-apt-get install -y docker-ce docker-ce-cli containerd.io
-
 docker network create hubinternal
+
+docker volume create node-red-volume
+docker volume create influxdb-volume
+docker volume create grafana-volume
 
 docker-compose up
