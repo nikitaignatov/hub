@@ -29,7 +29,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - e:/config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - /home/hub/config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
     networks:
       - default
   node-red:
