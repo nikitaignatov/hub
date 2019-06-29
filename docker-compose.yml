@@ -1,7 +1,7 @@
 version: '2'
 services:
   influxdb:
-    image: influxdb
+    image: influxdb:latest
     container_name: influxdb
     volumes:
       - influxdb-volume:/var/lib/influxdb
@@ -10,7 +10,7 @@ services:
       - "8089:8089"
     restart: always
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     ports:
       - "3000:3000"
     depends_on:
@@ -19,7 +19,7 @@ services:
     volumes:
       - grafana-volume:/var/lib/grafana
   mqtt:  
-    image: eclipse-mosquitto
+    image: eclipse-mosquitto:latest
     hostname: mosquitto
     container_name: mosquitto
     expose:
