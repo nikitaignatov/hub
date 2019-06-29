@@ -18,6 +18,8 @@ services:
     restart: always
     volumes:
       - grafana-volume:/var/lib/grafana
+    environment:
+      - GF_INSTALL_PLUGINS=natel-discrete-panel,jdbranham-diagram-panel,neocat-cal-heatmap-panel
   mqtt:  
     image: eclipse-mosquitto:latest
     hostname: mosquitto
